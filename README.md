@@ -1,4 +1,4 @@
-# optclient para Ubuntu 20.04
+# otpclient para Ubuntu 20.04
 
 Para buildar, execute:
 
