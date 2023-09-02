@@ -6,4 +6,4 @@ Para buildar, execute:
 sudo DOCKER_BUILDKIT=1 docker build . --output dist
 ```
 
-Os binários estarão na pasta `dist`.
+Os pacotes estarão na pasta `dist`.
