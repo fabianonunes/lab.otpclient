@@ -9,6 +9,7 @@ RUN <<EOT
   ln -snf /usr/share/zoneinfo/$TZ /etc/localtime;
   apt-get install -y --no-install-recommends \
     build-essential                          \
+    ca-certificates                          \
     cmake                                    \
     debugedit                                \
     libgcrypt20-dev                          \
@@ -24,11 +25,12 @@ RUN <<EOT
 EOT
 
 ARG DEB_BUILD_OPTIONS="parallel=16 nocheck nodoc notest"
+ARG MIRROR="https://mirrors.edge.kernel.org"
 
 WORKDIR /app/debhelper
 RUN <<EOT
-  wget http://archive.ubuntu.com/ubuntu/pool/main/d/debhelper/debhelper_13.6ubuntu1.dsc
-  wget http://archive.ubuntu.com/ubuntu/pool/main/d/debhelper/debhelper_13.6ubuntu1.tar.xz
+  wget "$MIRROR"/ubuntu/pool/main/d/debhelper/debhelper_13.6ubuntu1.dsc
+  wget "$MIRROR"/ubuntu/pool/main/d/debhelper/debhelper_13.6ubuntu1.tar.xz
   dpkg-source -x debhelper_13.6ubuntu1.dsc
   cd debhelper-13.6ubuntu1
   dpkg-buildpackage -rfakeroot -b -uc -us -nc
@@ -37,10 +39,10 @@ EOT
 
 WORKDIR /app/libbaseencode
 RUN <<EOT
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/libb/libbaseencode/libbaseencode_1.0.12-2.dsc
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/libb/libbaseencode/libbaseencode_1.0.12.orig.tar.gz
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/libb/libbaseencode/libbaseencode_1.0.12.orig.tar.gz.asc
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/libb/libbaseencode/libbaseencode_1.0.12-2.debian.tar.xz
+  wget "$MIRROR"/ubuntu/pool/universe/libb/libbaseencode/libbaseencode_1.0.12-2.dsc
+  wget "$MIRROR"/ubuntu/pool/universe/libb/libbaseencode/libbaseencode_1.0.12.orig.tar.gz
+  wget "$MIRROR"/ubuntu/pool/universe/libb/libbaseencode/libbaseencode_1.0.12.orig.tar.gz.asc
+  wget "$MIRROR"/ubuntu/pool/universe/libb/libbaseencode/libbaseencode_1.0.12-2.debian.tar.xz
   dpkg-source -x libbaseencode_1.0.12-2.dsc
   cd libbaseencode-1.0.12
   dpkg-buildpackage -rfakeroot -b -uc -us -nc
@@ -50,10 +52,10 @@ EOT
 
 WORKDIR /app/libcotp
 RUN <<EOT
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/libc/libcotp/libcotp_1.2.4-1.dsc
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/libc/libcotp/libcotp_1.2.4.orig.tar.gz
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/libc/libcotp/libcotp_1.2.4.orig.tar.gz.asc
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/libc/libcotp/libcotp_1.2.4-1.debian.tar.xz
+  wget "$MIRROR"/ubuntu/pool/universe/libc/libcotp/libcotp_1.2.4-1.dsc
+  wget "$MIRROR"/ubuntu/pool/universe/libc/libcotp/libcotp_1.2.4.orig.tar.gz
+  wget "$MIRROR"/ubuntu/pool/universe/libc/libcotp/libcotp_1.2.4.orig.tar.gz.asc
+  wget "$MIRROR"/ubuntu/pool/universe/libc/libcotp/libcotp_1.2.4-1.debian.tar.xz
   dpkg-source -x libcotp_1.2.4-1.dsc
   cd libcotp-1.2.4
   dpkg-buildpackage -rfakeroot -b -uc -us -nc
@@ -63,10 +65,10 @@ EOT
 
 WORKDIR /app/otpclient
 RUN <<EOT
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/o/otpclient/otpclient_2.4.6-1.dsc
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/o/otpclient/otpclient_2.4.6.orig.tar.gz
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/o/otpclient/otpclient_2.4.6.orig.tar.gz.asc
-  wget http://archive.ubuntu.com/ubuntu/pool/universe/o/otpclient/otpclient_2.4.6-1.debian.tar.xz
+  wget "$MIRROR"/ubuntu/pool/universe/o/otpclient/otpclient_2.4.6-1.dsc
+  wget "$MIRROR"/ubuntu/pool/universe/o/otpclient/otpclient_2.4.6.orig.tar.gz
+  wget "$MIRROR"/ubuntu/pool/universe/o/otpclient/otpclient_2.4.6.orig.tar.gz.asc
+  wget "$MIRROR"/ubuntu/pool/universe/o/otpclient/otpclient_2.4.6-1.debian.tar.xz
   dpkg-source -x otpclient_2.4.6-1.dsc
   cd otpclient-2.4.6
   dpkg-buildpackage -rfakeroot -b -uc -us -nc
